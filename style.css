@@ -265,11 +265,17 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 @media (max-width: 1100px) {
   .skjema__topp { flex-direction: column; align-items: flex-start; gap: 24px; }
   .skjema__topp > .brod { width: auto; max-width: 560px; }
-  .trinn { grid-template-columns: 220px 1fr; column-gap: 40px; }
+  .trinn { grid-template-columns: 220px minmax(0, 1fr); column-gap: 40px; }
 }
 @media (max-width: 760px) {
   .trinn { grid-template-columns: 1fr; }
   .trinnvelger { max-width: 100%; }
 }
 .meny .tlf { white-space: nowrap; }
-@media (max-width: 960px) { .meny .tlf { display: none; } }
+@media (max-width: 960px) {
+  .meny .tlf { display: none; }
+  /* Nettbrett: trinntittel over feltene, ellers blir dyrelista for bred (jf. 768 px). */
+  .trinn { grid-template-columns: minmax(0, 1fr); }
+  .trinn__tittel { padding-top: 0; }
+  .trinn > .felter { grid-column: 1; grid-row: auto; padding-top: 16px; }
+}
