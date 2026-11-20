@@ -1,4 +1,4 @@
-# Horns Slakteri – nettsideforslag (v2)
+# Horns Slakteri – nettsideforslag (v1)
 
 Designforslag fra ON—PAN, bygget fra Figma-fila «nettside-design-leads» (v1 «to veier», desktop 200:1829 og mobil 201:1829. «Meld inn dyr» (meld-inn.html) er skjemaet fra v2 (212:1829)).
 Statisk HTML/CSS/JS, ingen byggesteg. Siden er merket `noindex` og har en stripe øverst om at den er et forslag.
