@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meld inn dyr – Horns Slakteri</title>
+<meta name="description" content="Innmelding av dyr og egenerklæring om medisinbruk i ett skjema.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preload" href="fonter/gloock-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="hopp" href="#innhold">Hopp til innholdet</a>
+<div class="forslag">Designforslag fra ON—PAN · ikke Horns Slakteris offisielle nettside</div>
+<header class="meny">
+  <nav class="meny__venstre" aria-label="Hovedmeny">
+    <a href="./#historikk">Slakteriet</a>
+    <a href="./#for-bonden">For bonden</a>
+    <a href="./#produkter">Produkter</a>
+  </nav>
+  <a class="meny__logo" href="./"><img src="bilder/horns-slakteri-hvit.png" alt="Horns Slakteri, til forsiden" width="160" height="88"></a>
+  <nav class="meny__hoyre" aria-label="Kontakt">
+    <a class="meny__om" href="./#kontakt">Om oss</a>
+    <a class="tlf" href="tel:+4776055400">76 05 54 00</a>
+    <a class="glass" href="tel:+4790111908">Nødslakt: 901 11 908</a>
+  </nav>
+</header>
+<main id="innhold">
+  <section class="skjema" id="meld-inn">
+    <div class="skjema__topp">
+      <div>
+        <p class="overtittel overtittel--liten">For bonden · Meld inn dyr</p>
+        <h1 class="h-skjema">Meld inn dyr –<br>alt på ett sted.</h1>
+      </div>
+      <p class="brod">Innmelding og egenerklæring om medisinbruk i ett skjema. Du får bekreftelse når innmeldingen er mottatt, og slakteriet har alt samlet før dyrebilen kommer.</p>
+    </div>
+
+    <ol class="trinnvelger" aria-label="Trinn i skjemaet">
+      <li><a href="#trinn-1"><span>1</span>Bonden</a></li>
+      <li><a href="#trinn-2"><span>2</span>Dyrene</a></li>
+      <li><a href="#trinn-3"><span>3</span>Medisinbruk</a></li>
+      <li><a href="#trinn-4"><span>4</span>Helse</a></li>
+      <li><a href="#trinn-5"><span>5</span>Bekreft</a></li>
+    </ol>
+
+    <form id="innmelding" novalidate>
+      <section class="trinn" id="trinn-1" role="group" aria-labelledby="trinn-1-navn">
+        <h3 class="trinn__tittel"><span class="trinn__nr" aria-hidden="true">1</span><span class="trinn__navn" id="trinn-1-navn">Bonden</span></h3>
+        <p class="trinn__hjelp">Hvem leverer, og hvor skal dyrene hentes?</p>
+        <div class="felter rutenett">
+          <label class="felt"><span>Leverandør (navn eller gård)</span><input name="leverandor" autocomplete="organization" placeholder="Gårdsnavn eller ditt navn" required></label>
+          <label class="felt"><span>Produsentnummer</span><input name="produsentnr" inputmode="numeric" placeholder="Ditt produsentnummer"></label>
+          <label class="felt"><span>Telefon</span><input name="telefon" type="tel" autocomplete="tel" placeholder="Mobilnummer" required></label>
+          <label class="felt"><span>Henteadresse</span><input name="adresse" autocomplete="street-address" placeholder="Adresse for henting"></label>
+        </div>
+      </section>
+
+      <section class="trinn" id="trinn-2" role="group" aria-labelledby="trinn-2-navn">
+        <h3 class="trinn__tittel"><span class="trinn__nr" aria-hidden="true">2</span><span class="trinn__navn" id="trinn-2-navn">Dyrene</span></h3>
+        <p class="trinn__hjelp">Ett dyr per rad. Øremerket finner du i dyreholdjournalen.</p>
+        <div class="felter">
+          <fieldset class="valg">
+            <legend class="etikett">Dyreslag</legend>
+            <div class="piller">
+              <label><input type="radio" name="dyreslag" value="Storfe" checked><span>Storfe</span></label>
+              <label><input type="radio" name="dyreslag" value="Sau og lam"><span>Sau og lam</span></label>
+              <label><input type="radio" name="dyreslag" value="Geit"><span>Geit</span></label>
+              <label><input type="radio" name="dyreslag" value="Gris"><span>Gris</span></label>
+              <label><input type="radio" name="dyreslag" value="Hest"><span>Hest</span></label>
+            </div>
+          </fieldset>
+
+          <div class="dyreliste">
+            <div class="dyreliste__hode" aria-hidden="true">
+              <span>Identitetsmerke (øremerke, tatovering, hestepass) nr.</span>
+              <span>Fødselsdato</span>
+              <span>Kjønn</span>
+            </div>
+            <div id="dyr"></div>
+            <button type="button" class="lenkeknapp" id="legg-til-dyr">+ Legg til dyr</button>
+          </div>
+
+          <div class="rutenett">
+            <label class="felt"><span>Antall dyr</span><input name="antall" type="number" min="1" inputmode="numeric" placeholder="Antall"></label>
+            <fieldset class="valg">
+              <legend class="etikett">Ønsket henting</legend>
+              <div class="piller">
+                <label><input type="radio" name="henting" value="Denne uka"><span>Denne uka</span></label>
+                <label><input type="radio" name="henting" value="Neste uke" checked><span>Neste uke</span></label>
+                <label><input type="radio" name="henting" value="Om to uker eller senere"><span>Om to uker eller senere</span></label>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </section>
+
+      <section class="trinn" id="trinn-3" role="group" aria-labelledby="trinn-3-navn">
+        <h3 class="trinn__tittel"><span class="trinn__nr" aria-hidden="true">3</span><span class="trinn__navn" id="trinn-3-navn">Medisinbruk</span></h3>
+        <p class="trinn__hjelp">Fylles ut dersom tilbakeholdelsestiden er utløpt for mindre enn 7 dager siden, eller dyret er behandlet med preparater med langtidseffekt (eks. parasittmidler).</p>
+        <div class="felter">
+          <fieldset class="valg">
+            <legend class="etikett">Gjelder dette dyrene du melder inn?</legend>
+            <div class="piller">
+              <label><input type="radio" name="medisin" value="nei" checked><span>Nei – gå videre</span></label>
+              <label><input type="radio" name="medisin" value="ja"><span>Ja</span></label>
+            </div>
+          </fieldset>
+          <div id="behandlinger" hidden>
+            <div class="behandling rutenett">
+              <label class="felt"><span>Behandlingstidspunkt</span><input name="beh_dato[]" type="date"></label>
+              <label class="felt"><span>Navn på medikament (evt. dose)</span><input name="beh_medikament[]" placeholder="Medikament og dose"></label>
+              <label class="felt"><span>Tilbakeholdelsestid (antall dager)</span><input name="beh_dager[]" type="number" min="0" inputmode="numeric" placeholder="Antall dager"></label>
+              <label class="felt"><span>Injeksjonssted</span><input name="beh_sted[]" placeholder="For eksempel nakke"></label>
+            </div>
+            <button type="button" class="lenkeknapp" id="legg-til-behandling">+ Legg til behandling</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="trinn" id="trinn-4" role="group" aria-labelledby="trinn-4-navn">
+        <h3 class="trinn__tittel"><span class="trinn__nr" aria-hidden="true">4</span><span class="trinn__navn" id="trinn-4-navn">Helse</span></h3>
+        <p class="trinn__hjelp">Andre helseopplysninger, for eksempel offentlige restriksjoner knyttet til dyreholdet eller området, eller sjukdommer som har betydning for mattrygghet og kvalitet.</p>
+        <div class="felter">
+          <label class="felt"><span>Skriv her, eller la stå tomt</span><textarea name="helse" rows="3" placeholder="Restriksjoner, sjukdom eller annet slakteriet bør vite …"></textarea></label>
+        </div>
+      </section>
+
+      <section class="trinn" id="trinn-5" role="group" aria-labelledby="trinn-5-navn">
+        <h3 class="trinn__tittel"><span class="trinn__nr" aria-hidden="true">5</span><span class="trinn__navn" id="trinn-5-navn">Bekreft</span></h3>
+        <p class="trinn__hjelp">Sjekk opplysningene og send.</p>
+        <div class="felter">
+          <label class="avkrysning"><input type="checkbox" name="bekreftet" required><span>Jeg bekrefter at opplysningene om dyrene, medisinbruk og helse er riktige. Navn, sted og dato lagres med innmeldingen.</span></label>
+          <button type="submit" class="sendknapp"><span>Send innmelding</span><span aria-hidden="true">→</span></button>
+          <p class="melding" id="melding" role="status" aria-live="polite"></p>
+          <p class="trinn__hjelp">Du får bekreftelse på e-post når innmeldingen er mottatt. Haster det? Ring <a href="tel:+4776055400">76 05 54 00</a>. Nødslakt: <a href="tel:+4790111908">901 11 908</a>.</p>
+          <p class="lov">Jf. forskrift nr. 1623 om næringsmiddelhygiene og nr. 1624 om særlige hygieneregler for næringsmidler av animalsk opprinnelse: slakterier skal ikke ta imot dyr uten disse opplysningene.</p>
+        </div>
+      </section>
+    </form>
+  </section>
+</main>
+<footer class="bunn">
+  <img src="bilder/horns-slakteri-hvit.png" alt="Horns Slakteri" width="150" height="82" loading="lazy">
+  <ul class="bunn__linje">
+    <li>Horns Slakteri AS</li>
+    <li>Org.nr. 950 381 442</li>
+    <li>Fygleveien 69, 8370 Leknes</li>
+    <li>Facebook</li>
+    <li>Personvern</li>
+  </ul>
+</footer>
+<template id="dyr-rad">
+  <div class="dyr">
+    <label class="felt felt--uten-etikett"><span class="skjult">Identitetsmerke nr.</span><input name="dyr_id[]" placeholder="Nr. på øremerket"></label>
+    <label class="felt felt--uten-etikett"><span class="skjult">Fødselsdato</span><input name="dyr_fodt[]" placeholder="dd.mm.åååå" inputmode="numeric"></label>
+    <fieldset class="valg"><legend class="skjult">Kjønn</legend>
+      <div class="piller">
+        <label><input type="radio" value="Hunn" checked><span>Hunn</span></label>
+        <label><input type="radio" value="Hann"><span>Hann</span></label>
+      </div>
+    </fieldset>
+  </div>
+</template>
+<script src="skjema.js"></script>
+</body>
+</html>

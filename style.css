@@ -1,0 +1,275 @@
+/* Horns Slakteri – v1 «to veier». Bygget fra Figma (nettside-design-leads, desktop 200:1829, mobil 201:1829). */
+/* Fonter ligger lokalt (ingen kall til Google). Gloock har feil glyf for ø/Ø og mangler tankestrek,
+   så «Horns Serif» henter akkurat de tegnene fra DM Serif Display (unicode-range). */
+@font-face { font-family: "Horns Serif"; src: url(fonter/gloock-latin.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: "Horns Serif"; src: url(fonter/dm-serif-display-latin.woff2) format("woff2"); font-display: swap; unicode-range: U+00D8, U+00F8, U+2013, U+2014; }
+@font-face { font-family: "Schibsted Grotesk"; src: url(fonter/schibsted-grotesk-latin.woff2) format("woff2"); font-weight: 400 600; font-display: swap; }
+
+:root {
+  --koks: #171918;
+  --koks-2: #222524;
+  --blekk: #151716;
+  --papir: #ecede9;
+  --lys: #f6f6f3;
+  --rod: #8e1b22;
+  --gra: #5a5f5c;
+  --gra-lys: #9a9e9b;
+  --serif: "Horns Serif", Georgia, serif;
+  --sans: "Schibsted Grotesk", system-ui, sans-serif;
+  --kant: clamp(16px, 6.6vw, 96px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--papir); color: var(--blekk); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+i { font-style: normal; color: var(--rod); }
+:focus-visible { outline: 2px solid var(--rod); outline-offset: 3px; }
+.meny :focus-visible, .hero :focus-visible, .fakta :focus-visible, .pastand :focus-visible, .kjottet :focus-visible, .bunn :focus-visible { outline-color: var(--lys); }
+
+.hopp { position: absolute; left: -9999px; top: 8px; background: var(--lys); color: var(--blekk); padding: 10px 16px; z-index: 20; }
+.hopp:focus { left: 8px; }
+.skjult { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.forslag { background: var(--rod); color: var(--lys); font-size: 12px; text-align: center; padding: 6px 16px; letter-spacing: .04em; }
+
+.overtittel { font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--rod); }
+.overtittel--lys { color: var(--lys); }
+.brod { font-size: 17px; line-height: 1.6; color: var(--gra); }
+
+/* Meny */
+.meny { background: var(--koks); color: var(--lys); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 36px; padding: 24px 64px; }
+.meny--over { position: absolute; inset: 0 0 auto; background: none; z-index: 5; }
+.meny nav { display: flex; align-items: center; gap: 28px; font-weight: 500; font-size: 15px; }
+.meny .meny__venstre { gap: 32px; }
+.meny nav a { text-decoration: none; }
+.meny nav a:not(.glass):hover { text-decoration: underline; text-underline-offset: 4px; }
+.meny .meny__hoyre { justify-content: flex-end; }
+.meny .tlf { font-weight: 600; }
+.meny__logo img { width: 160px; }
+.glass { font-weight: 600; font-size: 14px; padding: 12px 18px; border-radius: 999px; background: rgb(255 255 255 / .12); border: 1px solid rgb(255 255 255 / .3); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); white-space: nowrap; }
+.glass:hover { background: rgb(255 255 255 / .2); }
+
+/* Hero: delt valg 50/50 */
+.topp { position: relative; }
+.hero { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--koks); min-height: 900px; color: var(--lys); }
+.hero__tittel { position: absolute; z-index: 2; top: 250px; left: 50%; transform: translateX(-50%); width: min(1000px, 90%); text-align: center; display: flex; flex-direction: column; gap: 18px; align-items: center; pointer-events: none; }
+.hero h1 { font-size: clamp(44px, 5.3vw, 76px); line-height: 1.04; text-wrap: balance; }
+.hero__halvdel { position: relative; overflow: hidden; display: flex; align-items: flex-end; }
+.hero__halvdel > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.hero__halvdel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgb(23 25 24 / .35), rgb(23 25 24 / .92)); }
+.hero__halvdel:hover > img { transform: scale(1.03); }
+.hero__innhold { position: relative; z-index: 1; padding: 0 64px 64px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.hero__innhold h2 { font-size: clamp(30px, 2.8vw, 40px); line-height: 1.1; }
+.hero__innhold > p:not(.overtittel) { font-size: 17px; line-height: 1.5; color: rgb(246 246 243 / .8); }
+.pil-lenke { margin-top: 6px; display: inline-flex; gap: 10px; align-items: center; font-weight: 600; font-size: 16px; text-decoration: none; padding-bottom: 6px; border-bottom: 1px solid rgb(246 246 243 / .6); }
+.pil-lenke span { font-weight: 400; font-size: 18px; transition: transform .2s; }
+.pil-lenke:hover { border-bottom-color: var(--lys); }
+.pil-lenke:hover span { transform: translateX(4px); }
+
+/* Faktalist */
+.fakta { background: var(--koks); color: var(--lys); display: grid; grid-template-columns: repeat(5, 1fr); padding: 40px 64px; }
+.fakta div { border-left: 1px solid rgb(246 246 243 / .2); padding: 0 24px; display: flex; flex-direction: column; gap: 6px; }
+.fakta strong { font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1.2; white-space: nowrap; }
+.fakta span { font-size: 14px; line-height: 1.4; color: var(--gra-lys); }
+
+/* Påstand over Lofoten-bildet */
+.pastand { position: relative; min-height: 760px; display: flex; align-items: flex-end; color: var(--lys); overflow: hidden; }
+.pastand > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pastand::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgb(23 25 24 / .05), rgb(23 25 24 / .9)); }
+.pastand__innhold { position: relative; z-index: 1; padding: 0 var(--kant) 96px; display: flex; flex-direction: column; gap: 20px; }
+.pastand h2 { font-size: clamp(42px, 5vw, 72px); line-height: 1.04; max-width: 900px; }
+.pastand__innhold > p:last-child { max-width: 640px; font-size: 18px; line-height: 1.55; color: rgb(246 246 243 / .85); }
+
+/* For bonden */
+.bonden { padding: 128px var(--kant); display: flex; flex-direction: column; gap: 64px; }
+.bonden__rad { display: grid; grid-template-columns: 460px 1fr; gap: 96px; align-items: start; }
+.bonden__venstre { display: flex; flex-direction: column; gap: 22px; }
+.bonden__venstre h2 { font-size: clamp(40px, 3.9vw, 56px); line-height: 1.05; }
+.handlinger { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--blekk); }
+.handlinger a { display: flex; gap: 24px; align-items: center; justify-content: space-between; padding: 24px 0; border-bottom: 1px solid rgb(21 23 22 / .18); text-decoration: none; }
+.handlinger a > span:first-child { display: flex; flex-direction: column; gap: 4px; }
+.handlinger strong { font-family: var(--serif); font-weight: 400; font-size: 30px; line-height: 1.2; }
+.handlinger small { font-size: 15px; color: var(--gra); }
+.handlinger .pil { color: var(--rod); font-size: 24px; transition: transform .2s; }
+.handlinger a:hover .pil { transform: translateX(4px); }
+.handlinger a:hover strong { color: var(--rod); }
+.henteomrade { border-top: 1px solid rgb(21 23 22 / .18); padding-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+.henteomrade__liste { font-family: var(--serif); font-size: clamp(26px, 2.6vw, 38px); line-height: 1.3; }
+
+/* Kjøttet */
+.kjottet { background: var(--koks); color: var(--lys); padding: 128px var(--kant); display: flex; flex-direction: column; gap: 56px; }
+.kjottet__topp { display: flex; gap: 64px; align-items: flex-end; }
+.kjottet__topp > div { flex: 1; display: flex; flex-direction: column; gap: 18px; }
+.kjottet h2 { font-size: clamp(42px, 4.4vw, 64px); line-height: 1.04; }
+.kjottet__topp .brod { width: 440px; flex: none; font-size: 18px; color: var(--gra-lys); }
+.kjottet__rad { display: grid; grid-template-columns: 520px 1fr; gap: 48px; align-items: start; }
+.kjottet__rad img { width: 100%; height: 560px; object-fit: cover; }
+.produkter { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgb(246 246 243 / .14); }
+.produkter li { display: flex; gap: 16px; align-items: center; padding: 19px 0; border-bottom: 1px solid rgb(246 246 243 / .14); }
+.produkter span { flex: 1; font-family: var(--serif); font-size: 30px; line-height: 1.2; }
+.produkter small { font-weight: 500; font-size: 14px; color: var(--gra-lys); white-space: nowrap; }
+
+/* Samarbeid */
+.samarbeid { background: var(--koks-2); color: var(--lys); padding: 56px var(--kant); display: flex; flex-direction: column; gap: 16px; align-items: center; text-align: center; }
+.samarbeid .overtittel { color: var(--gra-lys); }
+.samarbeid__liste { font-family: var(--serif); font-size: 28px; line-height: 1.3; color: rgb(246 246 243 / .85); }
+.samarbeid__liste i { color: inherit; margin: 0 .35em; }
+
+/* Kontakt */
+.kontakt { padding: 112px var(--kant); display: grid; grid-template-columns: repeat(3, 1fr); }
+.kontakt > div { border-top: 2px solid var(--blekk); padding: 28px 32px 0 0; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; font-size: 17px; color: var(--gra); }
+.kontakt a { text-decoration: none; }
+.kontakt a:hover { text-decoration: underline; }
+.kontakt__tlf { font-family: var(--serif); font-size: 44px; line-height: 1.2; color: var(--blekk); white-space: nowrap; }
+
+/* Bunn */
+.bunn { background: var(--koks); color: var(--lys); padding: 64px var(--kant) 48px; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center; }
+.bunn img { width: 150px; }
+.bunn__linje { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; font-size: 14px; color: var(--gra-lys); }
+
+/* Nettbrett */
+@media (max-width: 1100px) {
+  .meny { padding: 20px var(--kant); gap: 20px; }
+  .meny nav, .meny .meny__venstre { gap: 18px; font-size: 14px; }
+  .meny__logo img { width: 120px; }
+  .meny .meny__om { display: none; }
+  .hero { min-height: 760px; }
+  .hero__tittel { top: 190px; }
+  .hero__innhold { padding: 0 32px 48px; }
+  .fakta { grid-template-columns: repeat(3, 1fr); row-gap: 32px; padding: 40px var(--kant); }
+  .bonden__rad { grid-template-columns: 1fr; gap: 48px; }
+  .kjottet__topp { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .kjottet__topp .brod { width: auto; max-width: 560px; }
+  .kjottet__rad { grid-template-columns: 1fr; }
+  .kjottet__rad img { height: 420px; }
+  .kontakt { grid-template-columns: 1fr 1fr; row-gap: 48px; }
+}
+
+/* Mobil */
+@media (max-width: 760px) {
+  .meny { grid-template-columns: auto 1fr; padding: 14px 16px; gap: 12px; }
+  .meny .meny__venstre, .meny .tlf { display: none; }
+  .meny__logo img { width: 92px; }
+  .glass { font-size: 13px; padding: 10px 14px; }
+  .hero { grid-template-columns: 1fr; min-height: 0; }
+  .hero__tittel { position: relative; top: auto; left: auto; transform: none; width: auto; padding: 132px 16px 40px; background: var(--koks); pointer-events: auto; }
+  .hero__halvdel { min-height: 420px; }
+  .hero__innhold { padding: 0 16px 32px; }
+  .fakta { grid-template-columns: 1fr 1fr; padding: 32px 16px; }
+  .fakta div { padding: 0 14px; }
+  .fakta strong { font-size: 32px; }
+  .pastand { min-height: 640px; }
+  .pastand__innhold { padding-bottom: 48px; }
+  .pastand__innhold > p:last-child { font-size: 16px; }
+  .bonden, .kjottet { padding-block: 80px; }
+  .handlinger strong { font-size: 24px; }
+  .handlinger a { padding: 20px 0; }
+  .kjottet__rad img { height: 280px; }
+  .produkter span { font-size: 24px; }
+  .samarbeid__liste { font-size: 22px; }
+  .kontakt { grid-template-columns: 1fr; padding: 72px 16px; row-gap: 40px; }
+  .kontakt__tlf { font-size: 38px; }
+}
+
+/* ---------- Meld inn dyr (meld-inn.html) ---------- */
+.skjema { padding: 96px var(--kant) 128px; }
+/* Skjema */
+.skjema { display: flex; flex-direction: column; gap: 48px; }
+.skjema__topp { display: flex; gap: 80px; align-items: flex-end; }
+.skjema__topp > div { flex: 1; display: flex; flex-direction: column; gap: 16px; }
+.skjema__topp > .brod { width: 440px; flex: none; }
+.h-skjema { font-size: clamp(44px, 5vw, 72px); line-height: 1.04; }
+
+.trinnvelger { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); }
+.trinnvelger a { display: flex; gap: 8px; align-items: center; padding: 12px 0; border-top: 1px solid rgb(21 23 22 / .2); color: var(--gra-lys); font-weight: 600; font-size: 15px; text-decoration: none; }
+.trinnvelger span { font-family: var(--serif); font-weight: 400; font-size: 22px; line-height: 1.08; }
+.trinnvelger a.ferdig, .trinnvelger a.aktiv { border-top: 3px solid var(--blekk); color: var(--blekk); padding-top: 10px; }
+.trinnvelger a.ferdig span, .trinnvelger a.aktiv span { color: var(--rod); }
+
+form { display: flex; flex-direction: column; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.trinn { border-top: 1.5px solid var(--blekk); padding: 40px 0; display: grid; grid-template-columns: 300px 1fr; column-gap: 64px; row-gap: 8px; grid-template-rows: auto 1fr; align-items: start; scroll-margin-top: 24px; }
+
+.trinn__tittel { grid-column: 1; display: flex; flex-direction: column; gap: 8px; padding: 0; padding-top: 41px; }
+.trinn__nr { font-family: var(--serif); font-size: 56px; line-height: .9; color: var(--rod); }
+.trinn__navn { font-family: var(--serif); font-size: 30px; line-height: 1.08; }
+.trinn__hjelp { grid-column: 1; font-size: 14px; line-height: 1.5; color: var(--gra); }
+.trinn > .felter { grid-column: 2; grid-row: 1 / span 2; padding-top: 41px; display: flex; flex-direction: column; gap: 28px; }
+.felter .trinn__hjelp { grid-column: auto; }
+.rutenett { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 24px; }
+.felter.rutenett { display: grid; }
+
+.etikett, .felt > span, .dyreliste__hode { font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--gra); }
+.felt { display: flex; flex-direction: column; gap: 8px; }
+.felt input, .felt textarea { font: 24px/1.3 var(--serif); color: var(--blekk); background: transparent; border: 0; border-bottom: 1.5px solid var(--blekk); border-radius: 0; padding: 4px 0 8px; width: 100%; resize: vertical; }
+.felt textarea { background-image: linear-gradient(transparent calc(100% - 1.5px), var(--blekk) 0); background-size: 100% 2.6em; line-height: 2.6em; padding: 0; min-height: 5.2em; border-bottom: 0; }
+.felt input::placeholder, .felt textarea::placeholder { color: rgb(21 23 22 / .4); }
+.felt input:focus-visible, .felt textarea:focus-visible { outline: none; border-bottom-color: var(--rod); box-shadow: 0 1.5px 0 var(--rod); }
+.felt--uten-etikett input { font-size: 22px; border-bottom: 0; }
+
+.valg { display: flex; flex-direction: column; gap: 10px; }
+.valg > legend { padding: 0; margin-bottom: 10px; }
+.piller { display: flex; flex-wrap: wrap; gap: 8px; }
+.piller label { position: relative; }
+.piller input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.piller span { display: inline-block; padding: 10px 18px; border: 1.5px solid rgb(21 23 22 / .3); border-radius: 999px; font-weight: 500; font-size: 15px; color: var(--blekk); min-height: 44px; line-height: 21px; }
+.piller input:checked + span { background: var(--blekk); border-color: var(--blekk); color: var(--lys); }
+.piller input:focus-visible + span { outline: 2px solid var(--rod); outline-offset: 2px; }
+.piller label:hover span { border-color: var(--blekk); }
+
+.dyreliste { border-top: 1px solid rgb(21 23 22 / .25); }
+.dyreliste__hode, .dyr { display: grid; grid-template-columns: 1fr 190px 170px; gap: 16px; align-items: center; }
+.dyreliste__hode { padding: 10px 0; }
+.dyr { border-bottom: 1px solid rgb(21 23 22 / .15); padding: 14px 0; }
+.dyr .valg > legend { margin: 0; }
+
+.lenkeknapp { background: none; border: 0; padding: 14px 0 0; font: 600 15px var(--sans); color: var(--rod); cursor: pointer; text-align: left; min-height: 44px; }
+.lenkeknapp:hover { text-decoration: underline; }
+#behandlinger { display: flex; flex-direction: column; gap: 28px; }
+#behandlinger[hidden] { display: none; }
+.behandling + .behandling { border-top: 1px solid rgb(21 23 22 / .15); padding-top: 28px; }
+
+.avkrysning { display: flex; gap: 14px; align-items: flex-start; font-size: 17px; line-height: 1.55; cursor: pointer; }
+.avkrysning input { appearance: none; flex: none; width: 24px; height: 24px; margin: 2px 0 0; border: 1.5px solid var(--blekk); border-radius: 2px; display: grid; place-content: center; cursor: pointer; }
+.avkrysning input:checked { background: var(--blekk); }
+.avkrysning input:checked::after { content: "✓"; color: var(--lys); font: 600 16px var(--sans); }
+
+.sendknapp { display: flex; justify-content: space-between; align-items: center; width: 100%; background: var(--rod); color: var(--lys); border: 0; border-radius: 999px; padding: 20px 28px; font: 600 17px var(--sans); cursor: pointer; }
+.sendknapp span:last-child { font-weight: 400; font-size: 20px; transition: transform .2s; }
+.sendknapp:hover span:last-child { transform: translateX(4px); }
+.melding { font-size: 15px; line-height: 1.5; color: var(--rod); font-weight: 500; }
+.melding:empty { display: none; }
+.lov { font-size: 12px; line-height: 1.5; color: #767b78; }
+
+
+@media (max-width: 760px) {
+  .skjema { padding: 64px 16px 88px; }
+  .skjema { gap: 32px; }
+  .trinnvelger { display: flex; overflow-x: auto; gap: 16px; scrollbar-width: none; }
+  .trinnvelger li { flex: none; }
+  .trinn { grid-template-columns: 1fr; row-gap: 8px; padding: 32px 0; }
+  .trinn__tittel { flex-direction: row; align-items: baseline; gap: 12px; padding-top: 0; }
+  .trinn__nr { font-size: 44px; }
+  .trinn > .felter { grid-column: 1; grid-row: auto; padding-top: 16px; }
+  .rutenett, .felter.rutenett { grid-template-columns: 1fr; }
+  .dyreliste__hode { display: none; }
+  .dyr { grid-template-columns: 1fr 1fr; row-gap: 8px; }
+  .dyr > .felt:first-child { grid-column: 1 / -1; }
+  .dyr .felt input { border-bottom: 1.5px solid rgb(21 23 22 / .3); font-size: 20px; }
+  .felt input, .felt textarea { font-size: 21px; }
+}
+@media (max-width: 1100px) {
+  .skjema__topp { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .skjema__topp > .brod { width: auto; max-width: 560px; }
+  .trinn { grid-template-columns: 220px 1fr; column-gap: 40px; }
+}
+@media (max-width: 760px) {
+  .trinn { grid-template-columns: 1fr; }
+  .trinnvelger { max-width: 100%; }
+}
+.meny .tlf { white-space: nowrap; }
+@media (max-width: 960px) { .meny .tlf { display: none; } }
